@@ -9,7 +9,7 @@ NAME_LIST_FILE = CyclicStack_list.c
 
 NAME_OBJECT_FILE = CyclicStack
 
-NAME_RUN_FILE = NAME_RUN_FILE
+NAME_RUN_FILE = run
 
 all: compile_vector
 
@@ -22,7 +22,7 @@ compile_vector_dynamic: install make_vector_dynamic compile_main compile_dynamic
 compile_list_dynamic: install make_list_dynamic compile_main compile_dynamic install
 
 compile:
-	$(COMPILLER) *.o -L./ -l:$(NAME_OBJECT_FILE).a -o NAME_RUN_FILE
+	$(COMPILLER) *.o -L./ -l:$(NAME_OBJECT_FILE).a -o $(NAME_RUN_FILE)
 	rm ./$(NAME_OBJECT_FILE).a
 	rm ./*.o
 
@@ -33,7 +33,7 @@ make_list:
 	make -f $(PATH_LIBS)/$(PATH_STACK_LIB_FILES)/makefile creat_list ARG=$(PATH_LIBS)/$(PATH_STACK_LIB_FILES)/
 
 compile_dynamic:
-	$(COMPILLER) *.o -L./ -l:$(NAME_OBJECT_FILE).so -o NAME_RUN_FILE -ldl
+	$(COMPILLER) *.o -L./ -l:$(NAME_OBJECT_FILE).so -o $(NAME_RUN_FILE) -ldl
 	rm ./*.o
 
 make_vector_dynamic:
