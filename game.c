@@ -9,7 +9,7 @@
 
 int create_new_point(Game *game, Field *field, Point *point)
 {
-    if (point->x > game->width || point->y > game->height)
+    if (point->x >= game->width || point->y >= game->height)
     {
         return COORDINATE_ERROR;
     }

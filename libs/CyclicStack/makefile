@@ -20,7 +20,7 @@ creat_vector: make_object_file_vector
 	rm $(NAME_OBJECT_FILE).o
 
 creat_list: make_object_file_list
-	ar r $(NAME_OBJECT_LIST_FILE).a $(NAME_OBJECT_FILE).o
+	ar r $(NAME_OBJECT_FILE).a $(NAME_OBJECT_FILE).o
 	rm $(NAME_OBJECT_FILE).o
 
 creat_vector_dynamic: make_object_file_vector
