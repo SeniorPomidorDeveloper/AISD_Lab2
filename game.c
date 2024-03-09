@@ -12,14 +12,14 @@ int init_field(Game *game, Field *field)
     field->points = (bool **) calloc(game->height, sizeof(bool *));
     if (field->points == NULL)
     {
-        return MEMORY_REALLOCATION_ERROR;
+        return MEMORY_ALLOCATION_ERROR;
     }
     for (size_t i = 0; i < game->height; ++i) 
     {
         field->points[i] = (bool *) calloc(game->width, sizeof(bool));
         if (field->points[i] == NULL)
         {
-            return MEMORY_REALLOCATION_ERROR;
+            return MEMORY_ALLOCATION_ERROR;
         }
     }
     return SUCCESS;
@@ -118,11 +118,11 @@ int to_next_gen(Game *game) // Доработать
     game->active_field = (Field *) malloc(sizeof(Field));
     if (game->active_field == NULL)
     {
-        return MEMORY_REALLOCATION_ERROR;
+        return MEMORY_ALLOCATION_ERROR;
     }
-    if (init_field(game, game->active_field) == MEMORY_REALLOCATION_ERROR)
+    if (init_field(game, game->active_field) == MEMORY_ALLOCATION_ERROR)
     {
-        return MEMORY_REALLOCATION_ERROR;
+        return MEMORY_ALLOCATION_ERROR;
     }
     if (old_field != NULL)
     {
@@ -158,8 +158,8 @@ int start_event(Game *game, int event)
     switch (event)
     {
         case TO_NEXT_GEN:
-            if (to_next_gen(game) == MEMORY_REALLOCATION_ERROR) {
-                return MEMORY_REALLOCATION_ERROR;
+            if (to_next_gen(game) == MEMORY_ALLOCATION_ERROR) {
+                return MEMORY_ALLOCATION_ERROR;
             }
             break;
         case TO_PREV_GEN:
@@ -176,9 +176,9 @@ int start_event(Game *game, int event)
 
 int create_history(Game *game)
 {
-    if (init_CyclicStack(&(game->history_field), game->capacity, sizeof(Field *)) == MEMORY_REALLOCATION_ERROR)
+    if (init_CyclicStack(&(game->history_field), game->capacity, sizeof(Field *)) == MEMORY_ALLOCATION_ERROR)
     {
-        return MEMORY_REALLOCATION_ERROR;
+        return MEMORY_ALLOCATION_ERROR;
     }
     return SUCCESS;
 }
@@ -291,14 +291,14 @@ int command_menu()
 int start_game(size_t width, size_t height, size_t capacity)
 {
     Game game = {width, height, capacity, NULL, NULL};
-    if (create_history(&game) == MEMORY_REALLOCATION_ERROR)
+    if (create_history(&game) == MEMORY_ALLOCATION_ERROR)
     {
-        return MEMORY_REALLOCATION_ERROR;
+        return MEMORY_ALLOCATION_ERROR;
     }
-    if (to_next_gen(&game) == MEMORY_REALLOCATION_ERROR)
+    if (to_next_gen(&game) == MEMORY_ALLOCATION_ERROR)
     {
         free_CyclicStack(game.history_field);
-        return MEMORY_REALLOCATION_ERROR;
+        return MEMORY_ALLOCATION_ERROR;
     }
     if (input_points(&game, game.active_field) == EOF)
     {

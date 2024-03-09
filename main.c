@@ -36,5 +36,12 @@ int main()
 
 void print_error(int error_code)
 {
-    printf("[ERROR] Ошибка завершения программы!\n");
+    switch (error_code)
+    {
+        case MEMORY_ALLOCATION_ERROR:
+            printf("[ERROR] Не удалось выделить память.\n");
+            break;
+        default:
+            printf("[ERROR] Ошибка завершения программы!\n");
+    }
 }

@@ -10,10 +10,10 @@ NAME_OBJECT_FILE = CyclicStack
 all: creat_vector
 
 make_object_file_vector:
-	$(COMPILLER) -c $(PATH_LIB_FILES)$(NAME_VECTOR_FILE) -o $(NAME_OBJECT_FILE).o -fPIC
+	$(COMPILLER) -c $(PATH_LIB_FILES)$(NAME_VECTOR_FILE) -o $(NAME_OBJECT_FILE).o -fPIC -Wall -Wextra
 
 make_object_file_list:
-	$(COMPILLER) -c $(PATH_LIB_FILES)$(NAME_LIST_FILE) -o $(NAME_OBJECT_FILE).o -fPIC
+	$(COMPILLER) -c $(PATH_LIB_FILES)$(NAME_LIST_FILE) -o $(NAME_OBJECT_FILE).o -fPIC -Wall -Wextra
 
 creat_vector: make_object_file_vector
 	ar r $(NAME_OBJECT_FILE).a $(NAME_OBJECT_FILE).o

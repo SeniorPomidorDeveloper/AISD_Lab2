@@ -11,8 +11,6 @@
 enum game_errors_code
 {
     SUCCESS,
-    ERROR_INPUT_GAME,
-    MEMORY_REALLOCATION_ERROR,
     COORDINATE_ERROR,
     NON_EXISTENT_EVENT
 };

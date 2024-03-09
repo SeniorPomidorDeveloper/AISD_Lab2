@@ -11,6 +11,8 @@ NAME_OBJECT_FILE = CyclicStack
 
 NAME_RUN_FILE = run
 
+export LD_LIBRARY_PATH=.:LD_LIBRARY_PATH
+
 all: compile_vector
 
 compile_vector: make_vector compile_main compile
@@ -42,11 +44,14 @@ make_vector_dynamic:
 make_list_dynamic:
 	make -f $(PATH_LIBS)/$(PATH_STACK_LIB_FILES)/makefile creat_list_dynamic ARG=$(PATH_LIBS)/$(PATH_STACK_LIB_FILES)/
 
-install:
-	export LD_LIBRARY_PATH=.:LD_LIBRARY_PATH
-
 compile_main:
-	$(COMPILLER) -c main.c
-	$(COMPILLER) -c game.c
-	$(COMPILLER) -c ./libs/gets.c
-	$(COMPILLER) -c ./libs/compares.c
+	$(COMPILLER) -c main.c -Wall -Wextra
+	$(COMPILLER) -c game.c -Wall -Wextra
+	$(COMPILLER) -c ./libs/gets.c -Wall -Wextra
+	$(COMPILLER) -c ./libs/compares.c -Wall -Wextra
+
+start:
+	./$(NAME_RUN_FILE)
+
+start_valgrind:
+	valgrind ./$(NAME_RUN_FILE)
